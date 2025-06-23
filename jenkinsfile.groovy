@@ -3,7 +3,7 @@ pipeline {
 
   environment {
     TF_REPO = 'https://github.com/futurice/terraform-examples.git'
-    POLICY_REPO = 'git@github.com:tu-org/policies-sentinel.git'
+    POLICY_REPO = 'https://github.com/DrDiomedes/sentinel_policy.git'
   }
 
   stages {
