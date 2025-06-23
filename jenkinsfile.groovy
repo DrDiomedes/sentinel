@@ -23,6 +23,29 @@ pipeline {
       }
     }
 
+    stage('Instalar Terraform') {
+      steps {
+        sh '''
+          # Instalar Terraform en tiempo de ejecución (versión ajustable)
+          echo "Descargando Terraform..."
+          curl -O https://releases.hashicorp.com/terraform/1.8.5/terraform_1.8.5_linux_amd64.zip
+    
+          echo "Descomprimiendo..."
+          unzip terraform_1.8.5_linux_amd64.zip
+    
+          echo "Moviendo binario a PATH local"
+          mkdir -p $HOME/bin
+          mv terraform $HOME/bin/
+    
+          # Añadir al PATH para el resto del pipeline
+          export PATH=$HOME/bin:$PATH
+          echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
+    
+          echo "Verificando versión de Terraform"
+          terraform version
+        '''
+      }
+    }
     stage('Terraform Init') {
       steps {
         dir('terraform') {
