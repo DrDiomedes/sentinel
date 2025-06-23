@@ -10,7 +10,7 @@ pipeline {
     stage('Clonar código Terraform') {
       steps {
         dir('terraform') {
-          git url: "${TF_REPO}", branch: 'main'
+          git url: "${TF_REPO}", branch: 'master'
         }
       }
     }
